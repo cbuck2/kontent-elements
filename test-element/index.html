@@ -27,21 +27,26 @@
 
     <!-- Custom element code -->
     <script>
-      function setValue(value) {
+      function setValue() {
+        const value = $("#custom-element-test").val();
+        console.log(value);
         CustomElement.setValue(value || null);
       }
 
       function init() {
         CustomElement.init((el) => {
           CustomElement.setValue(el.value || null);
-          $("#custom-element-test").change(() => {
-            const val = $(this).val();
-            setValue(val);
-          });
         });
       }
 
       init();
+
+      $(document).ready(function () {
+        $("#custom-element-test").change(() => {
+          console.log("here");
+          setValue();
+        });
+      });
     </script>
   </body>
 </html>
