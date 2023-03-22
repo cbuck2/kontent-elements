@@ -1,14 +1,14 @@
 import { FC, useCallback, useEffect, useState } from "react";
 
-type Config = Readonly<{
-  bynderUrl?: string;
-  previewDerivative?: string;
-  webDerivative?: string;
-}>;
+// type Config = Readonly<{
+//   bynderUrl?: string;
+//   previewDerivative?: string;
+//   webDerivative?: string;
+// }>;
 
 export const IntegrationApp: FC = () => {
   const [currentValue, setCurrentValue] = useState<string>("0");
-  const [config, setConfig] = useState<null | Config>(null);
+  const [config, setConfig] = useState<any>(null);
   const [fixedSize, setFixedSize] = useState<number | null>(null);
 
   const updateSize = useCallback((providedSize?: number) => {
@@ -22,8 +22,6 @@ export const IntegrationApp: FC = () => {
   useEffect(() => {
     CustomElement.init((el) => {
       setConfig(el.config ?? {});
-      setCurrentValue(el.value || "0");
-      updateSize();
     });
   }, [updateSize]);
 
