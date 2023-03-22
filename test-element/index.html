@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Validation Rules Selector</title>
+    <!-- libs -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+    <!-- Kentico Custom elements API-->
+    <script src="https://app.kontent.ai/js-api/custom-element/v1/custom-element.min.js"></script>
+
+    <!-- Custom elements styles -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Custom element HTML -->
+    <label id="custom-element-test-label" htmlFor="custom-element-test"
+      >Custom Element</label
+    >
+    <input id="custom-element-test" type="text" />
+
+    <!-- Custom element code -->
+    <script>
+      function setValue(value) {
+        CustomElement.setValue(value || null);
+      }
+
+      function init() {
+        CustomElement.init((el) => {
+          CustomElement.setValue(el.value || null);
+          $("#custom-element-test").change(() => {
+            const val = $(this).val();
+            setValue(val);
+          });
+        });
+      }
+
+      init();
+    </script>
+  </body>
+</html>
